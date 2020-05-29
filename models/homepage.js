@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   homePage.associate = function (models) {
-    // associations can be defined here
+    homePage.belongsTo(models.user);
+    homePage.hasMany(models.story);
   };
   return homePage;
 };
