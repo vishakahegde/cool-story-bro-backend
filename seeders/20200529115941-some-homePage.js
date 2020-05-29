@@ -12,6 +12,7 @@ module.exports = {
           color: "#000000",
           createdAt: new Date(),
           updatedAt: new Date(),
+          userId: 1,
         },
         {
           title: "How I became a programmer",
@@ -20,6 +21,7 @@ module.exports = {
           color: "#000000",
           createdAt: new Date(),
           updatedAt: new Date(),
+          userId: 2,
         },
       ],
       {}
