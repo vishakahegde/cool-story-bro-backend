@@ -61,14 +61,23 @@ router.post("/signup", async (req, res) => {
 
     const token = toJWT({ userId: newUser.id });
 
-    res.status(201).json({ token, ...newUser.dataValues });
+    const homepage = await HomePage.create({
+      title: `${newUser.name}'s page`,
+      userId: newUser.id,
+    });
+
+    res.status(201).json({
+      token,
+      ...newUser.dataValues,
+      homePage: { ...homepage.dataValues, stories: [] },
+    });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
       return res
         .status(400)
         .send({ message: "There is an existing account with this email" });
     }
-
+    console.log("Error", error);
     return res.status(400).send({ message: "Something went wrong, sorry" });
   }
 });
